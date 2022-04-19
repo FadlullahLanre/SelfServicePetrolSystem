@@ -15,10 +15,8 @@ namespace SelfServicePump.Data
 
         }
 
-        public DbSet<Agents> Agents { get; set; }
-        public DbSet<Customers> Customers { get; set; }
-        public DbSet<Transactions> Transactions { get; set; }
-        public DbSet<Wallet> Wallets { get; set; }
+        public DbSet<User> Users { get; set; }
+     
        
 
     }

@@ -8,9 +8,18 @@ namespace SelfServicePump.Entities
 {
     public class Customers
     {
+        public Customers()
+        {
+            CreatedAt = DateTime.Now;
+            UpdatedAt = DateTime.Now;
+        }
+
+      
 
         [Key]
         public string CustomerId { get; set; }
+        [Required]
+        public Guid Id { get; set; }
         [Required(ErrorMessage = "Email must be provided")]
         [EmailAddress]
         public String CustomerEmailAddress { get; set; }
@@ -18,8 +27,8 @@ namespace SelfServicePump.Entities
         [MaxLength(14)]
         public string CustomerPhoneNumber { get; set; }
         [Required]
-        public string CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
         [Required]
-        public string UpdatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
     }
 }

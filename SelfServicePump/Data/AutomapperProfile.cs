@@ -12,10 +12,13 @@ namespace SelfServicePump.Data
         public AutomapperProfile()
         {
             CreateMap<Agents, DTO.AgentDTO>().ReverseMap();
-            CreateMap<DTO.AgentCreationDTO, Entities.Agents>();
+            CreateMap<DTO.AgentCreationDTO, Agents>();
 
-            CreateMap<Entities.Customers, DTO.CustomerDTO>().ReverseMap();
-            CreateMap<DTO.CustomerCreationDTO, Entities.Customers>();
+            CreateMap<Customers, DTO.CustomerDTO>();
+            CreateMap<DTO.CustomerCreationDTO, Customers>();
+
+            CreateMap<User, DTO.UserDTO>();
+            CreateMap<DTO.UserCreationDTO, User>();
 
 
         }

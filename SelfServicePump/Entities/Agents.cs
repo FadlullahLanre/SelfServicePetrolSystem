@@ -8,6 +8,15 @@ namespace SelfServicePump.Entities
 {
     public class Agents
     {
+
+        public Agents()
+        {
+            DateApproved = DateTime.Today;
+            CreatedOn = DateTime.Now;
+            UpdatedOn = DateTime.Now;
+        }
+
+
         [Key]
         public Guid AgentId { get; set; }
         [Required]
@@ -19,7 +28,7 @@ namespace SelfServicePump.Entities
         public string CompanyName { get; set; }
         public bool IsApproved { get; set; }
         [Required]
-        public string DateApproved { get; set; }
+        public DateTime DateApproved { get; set; }
         [Required]
         [MaxLength(250)]
         public string Location { get; set; }
@@ -32,8 +41,8 @@ namespace SelfServicePump.Entities
         [Required]
         public string BankAccountNumber { get; set; }
         [Required]
-        public string CreatedOn { get; set; }
+        public DateTime CreatedOn { get; set; }
         [Required]
-        public string UpdatedOn { get; set; }
+        public DateTime UpdatedOn { get; set; }
     }
 }

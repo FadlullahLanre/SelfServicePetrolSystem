@@ -35,6 +35,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,6 +50,9 @@
   <ItemGroup>
     <Reference Include="Autofac, Version=6.3.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.6.3.0\lib\netstandard2.0\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Extensions.DependencyInjection, Version=7.2.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Extensions.DependencyInjection.7.2.0\lib\netstandard2.0\Autofac.Extensions.DependencyInjection.dll</HintPath>
     </Reference>
     <Reference Include="Autofac.Integration.WebApi, Version=6.1.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.WebApi2.6.1.0\lib\net472\Autofac.Integration.WebApi.dll</HintPath>
@@ -83,6 +88,9 @@
     <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.1.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.Primitives, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Primitives.6.0.0\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
@@ -112,6 +120,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.IdentityModel.Tokens.Jwt, Version=6.15.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.6.15.0\lib\net472\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.BinaryExtensions, Version=1.0.1.41892, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.BinaryExtensions.1.0.2\lib\System.IO.BinaryExtensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
@@ -240,24 +251,30 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\AgentController.cs" />
     <Compile Include="Controllers\AuthenticateController.cs" />
-    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Data\Autentication\ApplicationUser.cs" />
     <Compile Include="Data\Autentication\LoginDTO.cs" />
     <Compile Include="Data\Autentication\RegisterDTO.cs" />
     <Compile Include="Data\Autentication\Response.cs" />
     <Compile Include="Data\Autentication\UserRoles.cs" />
     <Compile Include="Data\AutomapperProfile.cs" />
-    <Compile Include="Data\DTO\AgentCreationDTO.cs" />
-    <Compile Include="Data\DTO\AgentDTO.cs" />
-    <Compile Include="Data\DTO\CustomerCreationDTO.cs" />
-    <Compile Include="Data\DTO\CustomerDTO.cs" />
+    <Compile Include="Data\DTO\Agent\AgentCreationDTO.cs" />
+    <Compile Include="Data\DTO\Agent\AgentDTO.cs" />
+    <Compile Include="Data\DTO\Agent\AgentUpdateDTO.cs" />
+    <Compile Include="Data\DTO\Customer\CustomerCreationDTO.cs" />
+    <Compile Include="Data\DTO\Customer\CustomerDTO.cs" />
+    <Compile Include="Data\DTO\ResponseDTO.cs" />
+    <Compile Include="Data\DTO\UserCreationDTO.cs" />
+    <Compile Include="Data\DTO\UserDTO.cs" />
     <Compile Include="Data\PumpDbContext.cs" />
     <Compile Include="Entities\Agents.cs" />
+    <Compile Include="Entities\AgentUser.cs" />
     <Compile Include="Entities\Customers.cs" />
+    <Compile Include="Entities\CustomerUser.cs" />
     <Compile Include="Entities\Transactions.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Wallet.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -266,12 +283,15 @@
     <Compile Include="Migrations\202112301043344_MyMigration.designer.cs">
       <DependentUpon>202112301043344_MyMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204171421110_initial.cs" />
+    <Compile Include="Migrations\202204171421110_initial.designer.cs">
+      <DependentUpon>202204171421110_initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Interfaces\IAgentRepo.cs" />
-    <Compile Include="Services\Interfaces\ICustomerRepo.cs" />
-    <Compile Include="Services\Services\AgentRepo.cs" />
-    <Compile Include="Services\Services\CustomerRepo.cs" />
+    <Compile Include="Services\Extensions\ServicesExtensionConfiguration.cs" />
+    <Compile Include="Services\Interfaces\IUserService.cs" />
+    <Compile Include="Services\Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -303,6 +323,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -330,6 +351,7 @@
     <Folder Include="Views\Agent\" />
     <Folder Include="Views\Authenticate\" />
     <Folder Include="Views\Customer\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -363,6 +385,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202112301043344_MyMigration.resx">
       <DependentUpon>202112301043344_MyMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204171421110_initial.resx">
+      <DependentUpon>202204171421110_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

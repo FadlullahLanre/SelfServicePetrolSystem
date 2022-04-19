@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Security.Claims;
 using System.Text;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.IdentityModel.Tokens.Jwt;
@@ -40,7 +41,7 @@ namespace SelfServicePump.Controllers
             var user = await userManager.FindByEmailAsync(model.EmailAddress);
             if (user != null && await userManager.CheckPasswordAsync(user, model.Password))
             {
-                var userRoles = await userManager.GetRolesAsync(user.Email);
+                var userRoles = await userManager.GetRolesAsync(user.Id);
 
                 var authClaims = new List<Claim>
                 {
@@ -48,9 +49,9 @@ namespace SelfServicePump.Controllers
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 };
 
-                foreach (var userRole in userRoles)
+                foreach (var item in userRoles)
                 {
-                    authClaims.Add(new Claim(ClaimTypes.Role, userRole.ToString));
+                    authClaims.Add(new Claim(ClaimTypes.Role , item));
                 }
 
                 var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
@@ -71,6 +72,7 @@ namespace SelfServicePump.Controllers
             }
             return Unauthorized();
         }
+        
 
     }
 
