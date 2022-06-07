@@ -26,6 +26,9 @@ namespace SelfServicePump.Entities
         [Required]
         [MaxLength(200)]
         public string CompanyName { get; set; }
+        [Required]
+        [MaxLength(200)]
+        public string AgentNiche { get; set; }
         public bool IsApproved { get; set; }
         [Required]
         public DateTime DateApproved { get; set; }
