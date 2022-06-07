@@ -24,6 +24,8 @@ namespace SelfServicePump.Entities
         [EmailAddress]
         public String CustomerEmailAddress { get; set; }
         [Required]
+        public string Name{ get; set; }
+        [Required]
         [MaxLength(14)]
         public string CustomerPhoneNumber { get; set; }
         [Required]
