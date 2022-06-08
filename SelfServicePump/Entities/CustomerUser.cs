@@ -22,5 +22,8 @@ namespace SelfServicePump.Entities
         [Required(ErrorMessage = "Email must be provided")]
         [EmailAddress]
         public String CustomerEmailAddress { get; set; }
+        [Required]
+        public String Address { get; set; }
+        
     }
 }
